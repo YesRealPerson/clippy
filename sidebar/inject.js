@@ -10,11 +10,7 @@ document.addEventListener("keydown", (e) => {
   console.log(ctrl);
   console.log(c);
   if (ctrl && c) {
-    browser.runtime.sendMessage("Clippy", "what").then((result) => {
-        console.log("wyhatsijgrosd");
-    }).catch((err) => {
-        console.log(err);
-    });
+    browser.runtime.sendMessage("clippy@confluxes.net", "what");
   }
 });
 

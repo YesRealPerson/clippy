@@ -5,8 +5,8 @@
     "version": "1.0",
     "browser_specific_settings": {
         "gecko": {
-            "strict_min_version": "54.0a1",
-            "id": "Clippy"
+            "id": "clippy@confluxes.net",
+            "strict_min_version": "54.0a1"
         }
     },
     "content_scripts": [
@@ -33,7 +33,7 @@
     "commands": {
         "_add_text_to_clippy": {
             "suggested_key": {
-                "default": "Alt+C"
+                "default": "Alt+X"
             }
         }
     }
