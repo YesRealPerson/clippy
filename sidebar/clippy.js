@@ -1,7 +1,12 @@
 const body = document.body;
+let link = "";
 
 browser.commands.onCommand.addListener((command) => {
-  if (command === "_add_text_to_clippy") {
+  if (command === "_set_current_copy") {
+    link = Date.now();
+    console.log(link);
+  }
+  else if (command === "_add_text_to_clippy") {
     clip()
   }
 });
@@ -19,17 +24,26 @@ await navigator.clipboard.readText()
 
   let quote = document.createElement("button");
   quote.className = "quote";
+  quote.setAttribute("real",clippedText)
+  clippedText = clippedText.replace("\n"," ");
   quote.innerText = clippedText;
+  quote.addEventListener("click",copyText);
   div.appendChild(quote);
 
   let close = document.createElement("button");
   close.className = "close";
-  close.innerHTML = "X";
-  close.onclick = `deleteSelf("${time}")`;
+  close.innerHTML = "x";
+  close.addEventListener("click",deleteSelf);
   div.appendChild(close);
+
+  console.log(browser.tabs)
 } );
 }
 
-const deleteSelf = async (id) => {
-  console.log(id);
+const deleteSelf = (self) => {
+  self.srcElement.parentElement.remove();
+}
+
+const copyText = (self) => {
+  navigator.clipboard.writeText(self.srcElement.getAttribute("real"));
 }
