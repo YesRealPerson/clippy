@@ -8,6 +8,21 @@
     "icons":{
         "48": "icon48.png",
         "96": "icon96.png"
+    },
+
+    "sidebar_action": {
+        "default_title": "Oryx: the Taken King",
+        "default_panel": "main.html",
+        "default_icon": "icon96.png"
+    },
+
+    "permissions": ["storage", "tabs"],
+
+    "commands": {
+        "_add_text_to_clippy": {
+            "suggested_key":{
+                "default": "Alt+C"
+            }
+        }
     }
-    
 }
