@@ -25,6 +25,7 @@ body * {
 }
 
 .quote {
+    float: left;
     background-color: rgba(0,0,0,0);
     border:none;
     overflow: hidden;
@@ -33,9 +34,21 @@ body * {
 }
 
 .close {
+    border: 0;
     background-color: rgba(0,0,0,0);
 }
 
 .close:hover, .quote:hover{
     color: grey;
+}
+
+.link{
+    margin:0;
+    padding:0;
+    display: inline-block;
+}
+
+.link img{
+    width: calc(20px + 0.25vw);
+    height: auto;
 }
