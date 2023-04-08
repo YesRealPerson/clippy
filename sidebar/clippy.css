@@ -2,9 +2,10 @@ body {
     background-color: #404040;
 }
 body * {
-    font-size: 3vh;
+    font-size: calc(15px + 1vh);
     margin:0;
-    margin-left: 5vw;
+    margin-left: 20px;
+    margin-right: 20px;
     padding:0;
     color: white;
 }
@@ -12,27 +13,28 @@ body * {
 .upperDiv {
     background-color: rgba(0,0,0,0);
     height: auto;
-    width: 100%;
+    width: 90%;
     border: none;
     display:flex;
     justify-content: space-between;
     padding:0;
-    margin:0;
-    margin-bottom: .25vh;
+    margin: auto;
+    margin-bottom: calc(10px + .5vh);
+    padding-bottom: calc(5px + .25vh);
+    border-bottom: white solid 1px;
 }
 
 .quote {
     background-color: rgba(0,0,0,0);
-    width: 80%;
-    height: inherit;
     border:none;
     overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
 }
 
 .close {
+    font-family: monospace;
     background-color: rgba(0,0,0,0);
-    width: 10%;
     border:none;
 }
 

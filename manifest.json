@@ -24,6 +24,11 @@
             "suggested_key": {
                 "default": "Alt+C"
             }
+        },
+        "_set_current_copy": {
+            "suggested_key": {
+                "default": "Ctrl+C"
+            }
         }
     }
 }
