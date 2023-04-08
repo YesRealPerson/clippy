@@ -20,13 +20,13 @@ await navigator.clipboard.readText()
   let quote = document.createElement("button");
   quote.className = "quote";
   quote.innerText = clippedText;
-  quote.onclick = `copyText("${time}")`
+  quote.addEventListener("click",copyText(time));
   div.appendChild(quote);
 
   let close = document.createElement("button");
   close.className = "close";
   close.innerHTML = "X";
-  close.onclick = `deleteSelf("${time}")`;
+ close.addEventListener("click",deleteSelf(time));
   div.appendChild(close);
 } );
 }
