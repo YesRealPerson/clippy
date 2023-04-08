@@ -5,9 +5,20 @@
     "version": "1.0",
     "browser_specific_settings": {
         "gecko": {
-            "strict_min_version": "54.0a1"
+            "strict_min_version": "54.0a1",
+            "id": "Clippy"
         }
     },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "sidebar/inject.js"
+            ]
+        }
+    ],
     "sidebar_action": {
         "default_icon": "icons/icon96.png",
         "default_title": "Clippy",
@@ -23,11 +34,6 @@
         "_add_text_to_clippy": {
             "suggested_key": {
                 "default": "Alt+C"
-            }
-        },
-        "_set_current_copy": {
-            "suggested_key": {
-                "default": "Ctrl+C"
             }
         }
     }
