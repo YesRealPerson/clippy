@@ -33,9 +33,7 @@ body * {
 }
 
 .close {
-    font-family: monospace;
     background-color: rgba(0,0,0,0);
-    border:none;
 }
 
 .close:hover, .quote:hover{
