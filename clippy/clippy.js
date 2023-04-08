@@ -10,7 +10,21 @@ browser.windows.getCurrent({ populate: true }).then((windowInfo) => {
   });
 
   //Clipping functionality
-const clip = () => {
-  navigator.clipboard.readText()
-  .then( (clippedText) => {console.log("is this what you currently have clipped?:" + clippedText)} );
+const clip = async () => {
+  await navigator.clipboard.readText()
+  .then( async (clippedText) => {
+    let time = await new Date();
+    let div = document.createElement("div");
+    div.id = await Date.now();
+    div.className = "upperDiv"
+    document.body.appendChild(div)
+    let quote = document.createElement("button")
+    quote.className = "quote"
+    quote.innerText = clippedText;
+    div.appendChild(quote);
+    let close = document.createElement("button")
+    close.className = "close"
+    close.innerHTML = "X";
+    div.appendChild(close);
+  } );
 }
