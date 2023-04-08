@@ -20,6 +20,7 @@ await navigator.clipboard.readText()
   let quote = document.createElement("button");
   quote.className = "quote";
   quote.innerText = clippedText;
+  quote.onclick = `copyText("${time}")`
   div.appendChild(quote);
 
   let close = document.createElement("button");
@@ -31,5 +32,15 @@ await navigator.clipboard.readText()
 }
 
 const deleteSelf = async (id) => {
-  console.log(id);
+  await document.getElementById(id).remove()
+    .then(console.log(id + " deleted"));
+}
+
+const copyText = async (id) => {
+  let quote = await document.getElementById(id)
+  navigator.clipboard.writeeText(quote.innerHTML)
+    .then(
+      () => {console.log("text has been saved to clipboard!")},
+      () => {console.log("there was an error saving to clipboard")}
+    )
 }
