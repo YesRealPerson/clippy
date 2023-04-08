@@ -1,0 +1,13 @@
+{
+    "manifest_version": 2,
+    "name": "Oryx: the Taken King",
+    "version": "1.0",
+
+    "description": "Holds clipboard data for easy access.",
+
+    "icons":{
+        "48": "icon48.png",
+        "96": "icon96.png"
+    }
+    
+}
