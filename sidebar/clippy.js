@@ -2,16 +2,16 @@ const body = document.body;
 let link = "";
 
 browser.commands.onCommand.addListener((command) => {
-  if (command === "_set_current_copy") {
-    link = Date.now();
-    console.log(link);
-  }
-  else if (command === "_add_text_to_clippy") {
+  if (command === "_add_text_to_clippy") {
     clip()
   }
 });
 
 //Clipping functionality
+const getSiteLink = async () => {
+  link = await browser.tabs.query({active: true, currentWindow: true});
+}
+
 const clip = async () => {
 await navigator.clipboard.readText()
 .then( async (clippedText) => {
