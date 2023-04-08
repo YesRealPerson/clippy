@@ -38,8 +38,7 @@ let entries = browser.storage.local.get().then( (data) => {
 })
 
 const getSiteLink = async () => {
-  link = await browser.tabs.query({ active: true, currentWindow: true });
-  link = link[0];
+  link = await browser.tabs.query({ active: true, currentWindow: true })[0];
 };
 
 document.getElementById("clear").addEventListener("click", () => {
@@ -89,6 +88,8 @@ const clip = async () => {
       citedLink.appendChild(urlImage);
 
       div.appendChild(citedLink);
+      entries[time] = {text: clippedText, textSource: link};
+      browser.storage.local.set(JSON.parse(entries));
     }
   });
 };
