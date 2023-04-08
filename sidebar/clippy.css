@@ -52,3 +52,14 @@ body * {
     width: calc(20px + 0.25vw);
     height: auto;
 }
+
+#clear{
+    background-color: transparent;
+    border: 0;
+    color: white;
+    margin-bottom: calc(5px + 2vh);
+}
+
+#clear:hover{
+    color: grey;
+}

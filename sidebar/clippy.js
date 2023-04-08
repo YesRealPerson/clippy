@@ -5,8 +5,7 @@ const getSiteLink = async () => {
   link = link[0];
 };
 
-document.getElementById("clear").addEventListener("onclick", (e) => {
-  console.log("what");
+document.getElementById("clear").addEventListener("click", () => {
   body.innerHTML = "";
 })
 
@@ -31,7 +30,7 @@ const clip = async () => {
 
       let quote = document.createElement("button");
       quote.className = "quote";
-      quote.setAttribute("real", clippedText);
+      quote.setAttribute("title", clippedText);
       clippedText = clippedText.replaceAll("\n", " ");
       console.log(clippedText);
       quote.innerText = clippedText;
@@ -62,7 +61,7 @@ const deleteSelf = (self) => {
 };
 
 const copyText = (self) => {
-  navigator.clipboard.writeText(self.srcElement.getAttribute("real"));
+  navigator.clipboard.writeText(self.srcElement.getAttribute("title"));
 };
 
 const copyLink = (self) => {
