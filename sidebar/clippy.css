@@ -1,0 +1,41 @@
+body {
+    background-color: #404040;
+}
+body * {
+    font-size: 3vh;
+    margin:0;
+    margin-left: 5vw;
+    padding:0;
+    color: white;
+}
+
+.upperDiv {
+    background-color: rgba(0,0,0,0);
+    height: auto;
+    width: 100%;
+    border: none;
+    display:flex;
+    justify-content: space-between;
+    padding:0;
+    margin:0;
+    margin-bottom: .25vh;
+}
+
+.quote {
+    background-color: rgba(0,0,0,0);
+    width: 80%;
+    height: inherit;
+    border:none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.close {
+    background-color: rgba(0,0,0,0);
+    width: 10%;
+    border:none;
+}
+
+.close:hover, .quote:hover{
+    color: grey;
+}

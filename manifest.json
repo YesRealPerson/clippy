@@ -1,26 +1,27 @@
 {
     "manifest_version": 2,
-    "name": "Oryx: the Taken King",
-    "version": "1.0",
-
+    "name": "Clippy",
     "description": "Holds clipboard data for easy access.",
-
-    "icons":{
-        "48": "icon48.png",
-        "96": "icon96.png"
+    "version": "1.0",
+    "browser_specific_settings": {
+        "gecko": {
+            "strict_min_version": "54.0a1"
+        }
     },
-
     "sidebar_action": {
-        "default_title": "Oryx: the Taken King",
-        "default_panel": "main.html",
-        "default_icon": "icon96.png"
+        "default_icon": "icons/icon96.png",
+        "default_title": "Clippy",
+        "default_panel": "sidebar/main.html"
     },
-
-    "permissions": ["storage", "tabs"],
-
+    "permissions": [
+        "storage",
+        "tabs",
+        "clipboardRead",
+        "clipboardWrite"
+    ],
     "commands": {
         "_add_text_to_clippy": {
-            "suggested_key":{
+            "suggested_key": {
                 "default": "Alt+C"
             }
         }
