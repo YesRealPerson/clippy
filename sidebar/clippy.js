@@ -59,12 +59,12 @@ if (k != null) {
       div.appendChild(greater);
       div.appendChild(quote);
       keep.push(key);
-    } catch {}
+    } catch { }
   }
 
   let temp = {
     data: keep
-  } 
+  }
   window.localStorage.setItem("keys", JSON.stringify(temp));
 }
 
@@ -114,16 +114,18 @@ const clip = async () => {
       close.addEventListener("click", deleteSelf);
       greater.appendChild(close);
 
-      let citedLink = document.createElement("a");
-      citedLink.className = "link";
-      citedLink.setAttribute("href", link.url);
+      try {
+        let citedLink = document.createElement("a");
+        citedLink.className = "link";
+        citedLink.setAttribute("href", link.url);
 
-      let urlImage = document.createElement("img");
-      urlImage.src = link.favIconUrl;
-      citedLink.appendChild(urlImage);
+        let urlImage = document.createElement("img");
+        urlImage.src = link.favIconUrl;
+        citedLink.appendChild(urlImage);
 
-      greater.appendChild(citedLink);
-      div.appendChild(greater);
+        greater.appendChild(citedLink);
+        div.appendChild(greater);
+      } catch { }
       div.appendChild(quote);
 
       window.localStorage.setItem(
