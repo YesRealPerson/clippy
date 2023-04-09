@@ -1,6 +1,7 @@
 const body = document.getElementById("clipboard");
 
 let k = window.localStorage.getItem("keys");
+k = JSON.parse(k).data;
 if(k != null){
   for (let i = 0; i < k.length; i++) {
     let key = k[i];
@@ -100,19 +101,25 @@ const clip = async () => {
       div.appendChild(greater);
       div.appendChild(quote);
 
-      window.localStorage.setItem(time, { text: clippedText, url: link.url, img: link.favIconUrl });
+      window.localStorage.setItem(time, JSON.stringify({ text: clippedText, url: link.url, img: link.favIconUrl }));
       let keys = window.localStorage.getItem("keys");
       if (keys != undefined) {
-        console.log(keys);
-        console.log(typeof keys);
-        keys.push(time);
-        window.localStorage.setItem("keys", keys);
-      } else {
-        let temp = [];
+        let temp = JSON.parse(keys);
+        temp = temp.data;
         temp.push(time);
-        console.log(temp);
-        console.log(typeof temp);
-        window.localStorage.setItem("keys", temp);
+        let keys = {
+          data: [
+            temp
+          ]
+        }
+        window.localStorage.setItem("keys", JSON.stringify(keys));
+      } else {
+        temp = {
+          data: [
+            time
+          ]
+        }
+        window.localStorage.setItem("keys", JSON.stringify(temp));
       }
     }
   });
