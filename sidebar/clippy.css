@@ -2,7 +2,7 @@ body {
     background-color: #404040;
 }
 body * {
-    font-size: calc(15px + 1vh);
+    font-size: calc(7px + 1vh);
     margin:0;
     padding:0;
     color: white;
@@ -52,28 +52,27 @@ body * {
 
 .link img{
     display: block;
-    width: calc(20px + 0.25vw);
-    height: auto;
-    width: fit-content;
-    max-width: 30px;
+    width: 20px;
     height: auto;
 }
 
 #clear{
+    font-size: 20px;
     background-color: transparent;
-    border: 1px white solid;
+    border: 1px transparent solid;
     display:inline;
     margin: 0px;
     padding: 5px;
     color: white;
-    margin-left: calc(5px + 5vw);
-    margin-top: calc(5px + 2vh);
-    margin-bottom: calc(5px + 2vh);
+    margin-left: calc(5px + 2vw);
+    margin-top: calc(5px + 0.5vh);
+    margin-bottom: calc(5px + 0.5vh);;
     width: fit-content;
+    border-radius: 10%;
 }
 
 #clear:hover{
-    color: grey;
+    background-color: rgba(255,255,255,0.15);
 }
 
 .poggers{
@@ -85,4 +84,9 @@ body * {
 
 .poggers *, .quote {
     margin-right: calc(10px + .5vw);
+}
+
+#clipboard{
+    border-top: white 1px dashed;
+    padding-top: 10px;
 }
