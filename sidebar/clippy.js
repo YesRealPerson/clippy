@@ -1,11 +1,25 @@
 const body = document.getElementById("clipboard");
 
+const deleteSelf = (self) => {
+  window.localStorage.removeItem(self.id);
+  self.srcElement.parentElement.parentElement.remove();
+};
+
+const copyText = (self) => {
+  navigator.clipboard.writeText(self.srcElement.getAttribute("title"));
+};
+
+const copyLink = (self) => {
+  navigator.clipboard.writeText(self.srcElement.citedLink.innerText);
+};
+
+
 let k = window.localStorage.getItem("keys");
-k = JSON.parse(k).data;
 if(k != null){
+  k = JSON.parse(k).data;
   for (let i = 0; i < k.length; i++) {
     let key = k[i];
-    let entry = window.localStorage.getItem(key);
+    let entry = JSON.parse(window.localStorage.getItem(key));
     let clippedText = entry.text;
   
     let div = document.createElement("div");
@@ -104,15 +118,18 @@ const clip = async () => {
       window.localStorage.setItem(time, JSON.stringify({ text: clippedText, url: link.url, img: link.favIconUrl }));
       let keys = window.localStorage.getItem("keys");
       if (keys != undefined) {
-        let temp = JSON.parse(keys);
-        temp = temp.data;
-        temp.push(time);
-        let keys = {
-          data: [
-            temp
-          ]
+        keys = JSON.parse(keys);
+        keys = keys.data;
+        
+        console.log(keys)
+        console.log(typeof keys);
+        
+        keys.push(time);
+
+        let keys2 = {
+          data: keys
         }
-        window.localStorage.setItem("keys", JSON.stringify(keys));
+        window.localStorage.setItem("keys", JSON.stringify(keys2));
       } else {
         temp = {
           data: [
@@ -123,17 +140,4 @@ const clip = async () => {
       }
     }
   });
-};
-
-const deleteSelf = (self) => {
-  window.localStorage.removeItem(self.id);
-  self.srcElement.parentElement.parentElement.remove();
-};
-
-const copyText = (self) => {
-  navigator.clipboard.writeText(self.srcElement.getAttribute("title"));
-};
-
-const copyLink = (self) => {
-  navigator.clipboard.writeText(self.srcElement.citedLink.innerText);
 };
