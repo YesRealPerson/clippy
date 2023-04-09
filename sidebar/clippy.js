@@ -1,49 +1,57 @@
 const body = document.getElementById("clipboard");
-let entries = browser.storage.local.get().then( (data) => {
-  if (data === null) {
-    entries = [];
-  } else {
-    entries = JSON.stringify(data);
-    for (let entry of entries) {
-      let div = document.createElement("div");
-      div.id = entry.key;
-      div.className = "upperDiv";
-      body.appendChild(div);
 
-      let quote = document.createElement("button");
-      quote.className = "quote";
-      quote.setAttribute("real", entry.text);
-      let clippedText = entry.text.replaceAll("\n", " ");
-      console.log(clippedText);
-      quote.innerText = clippedText;
-      quote.addEventListener("click", copyText);
-      div.appendChild(quote);
-
-      let close = document.createElement("button");
-      close.className = "close";
-      close.innerText = "✖";
-      close.addEventListener("click", deleteSelf);
-      div.appendChild(close);
-
-      let citedLink = document.createElement("a");
-      citedLink.className = "link";
-      citedLink.setAttribute("href", entry.textSource.url);
-
-      let urlImage = document.createElement("img");
-      urlImage.src= entry.textSource.favIconUrl;
-      citedLink.appendChild(urlImage);
-      div.appendChild(citedLink);
-    }
+let k = window.localStorage.getItem("keys");
+if(k != null){
+  for (let i = 0; i < k.length; i++) {
+    let key = k[i];
+    let entry = window.localStorage.getItem(key);
+    let clippedText = entry.text;
+  
+    let div = document.createElement("div");
+    div.id = key;
+    div.className = "upperDiv";
+    body.appendChild(div);
+  
+    let quote = document.createElement("button");
+    quote.className = "quote";
+    quote.setAttribute("title", clippedText);
+    let temp = clippedText.replaceAll("\n", " ");
+    quote.innerText = temp;
+    quote.addEventListener("click", copyText);
+  
+    let greater = document.createElement("div");
+    greater.className = "poggers";
+  
+    let close = document.createElement("button");
+    close.className = "close";
+    close.innerText = "✖";
+    close.addEventListener("click", deleteSelf);
+    greater.appendChild(close);
+  
+    let citedLink = document.createElement("a");
+    citedLink.className = "link";
+    citedLink.setAttribute("href", entry.url);
+  
+    let urlImage = document.createElement("img");
+    urlImage.src = entry.img;
+    citedLink.appendChild(urlImage);
+  
+    greater.appendChild(citedLink);
+    div.appendChild(greater);
+    div.appendChild(quote);
   }
-})
+}
 
 const getSiteLink = async () => {
-  link = await browser.tabs.query({ active: true, currentWindow: true })[0];
+  link = await browser.tabs.query({ active: true, currentWindow: true });
+  link = link[0];
 };
 
 document.getElementById("clear").addEventListener("click", () => {
+  console.log(window.localStorage);
   body.innerHTML = "";
-})
+  window.localStorage.clear();
+});
 
 browser.runtime.onMessage.addListener(getSiteLink);
 
@@ -67,37 +75,52 @@ const clip = async () => {
       let quote = document.createElement("button");
       quote.className = "quote";
       quote.setAttribute("title", clippedText);
-      clippedText = clippedText.replaceAll("\n", " ");
-      console.log(clippedText);
-      quote.innerText = clippedText;
+      let temp = clippedText.replaceAll("\n", " ");
+      quote.innerText = temp;
       quote.addEventListener("click", copyText);
-      div.appendChild(quote);
+
+      let greater = document.createElement("div");
+      greater.className = "poggers";
 
       let close = document.createElement("button");
       close.className = "close";
       close.innerText = "✖";
       close.addEventListener("click", deleteSelf);
-      div.appendChild(close);
+      greater.appendChild(close);
 
       let citedLink = document.createElement("a");
       citedLink.className = "link";
       citedLink.setAttribute("href", link.url);
 
       let urlImage = document.createElement("img");
-      urlImage.src= link.favIconUrl;
+      urlImage.src = link.favIconUrl;
       citedLink.appendChild(urlImage);
 
-      div.appendChild(citedLink);
-      entries[time] = {text: clippedText, textSource: link};
-      browser.storage.local.set(JSON.parse(entries));
+      greater.appendChild(citedLink);
+      div.appendChild(greater);
+      div.appendChild(quote);
+
+      window.localStorage.setItem(time, { text: clippedText, url: link.url, img: link.favIconUrl });
+      let keys = window.localStorage.getItem("keys");
+      if (keys != undefined) {
+        console.log(keys);
+        console.log(typeof keys);
+        keys.push(time);
+        window.localStorage.setItem("keys", keys);
+      } else {
+        let temp = [];
+        temp.push(time);
+        console.log(temp);
+        console.log(typeof temp);
+        window.localStorage.setItem("keys", temp);
+      }
     }
   });
 };
 
 const deleteSelf = (self) => {
-  entries.remove(self.id);
-  browser.storag.local.set(JSON.parse(entries))
-  self.srcElement.parentElement.remove();
+  window.localStorage.removeItem(self.id);
+  self.srcElement.parentElement.parentElement.remove();
 };
 
 const copyText = (self) => {
@@ -106,4 +129,4 @@ const copyText = (self) => {
 
 const copyLink = (self) => {
   navigator.clipboard.writeText(self.srcElement.citedLink.innerText);
-}
+};
