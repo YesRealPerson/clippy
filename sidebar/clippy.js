@@ -73,6 +73,15 @@ const getSiteLink = async () => {
   link = link[0];
 };
 
+const isValidUrl = (urlString) => {
+  try { 
+    return Boolean(new URL(urlString)); 
+  }
+  catch(e){ 
+    return false; 
+  }
+};
+
 document.getElementById("clear").addEventListener("click", () => {
   console.log(window.localStorage);
   body.innerHTML = "";
@@ -126,6 +135,10 @@ const clip = async () => {
         greater.appendChild(citedLink);
         div.appendChild(greater);
       } catch { }
+      if (isValidUrl(clippedText) === true) {
+        citedLink.setAttribute("href",clippedText);
+      }
+
       div.appendChild(quote);
 
       window.localStorage.setItem(
