@@ -126,19 +126,21 @@ const clip = async () => {
       try {
         let citedLink = document.createElement("a");
         citedLink.className = "link";
+        if (isValidUrl(clippedText) === true) {
+          letcitedLink.setAttribute("href",clippedText);
+        }else{
+          
         citedLink.setAttribute("href", link.url);
+        }
 
         let urlImage = document.createElement("img");
         urlImage.src = link.favIconUrl;
         citedLink.appendChild(urlImage);
 
         greater.appendChild(citedLink);
-        div.appendChild(greater);
       } catch { }
-      if (isValidUrl(clippedText) === true) {
-        citedLink.setAttribute("href",clippedText);
-      }
 
+      div.appendChild(greater);
       div.appendChild(quote);
 
       window.localStorage.setItem(
