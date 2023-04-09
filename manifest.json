@@ -9,6 +9,9 @@
             "strict_min_version": "54.0a1"
         }
     },
+    "icons": {
+        "96": "icons/Icon.png"
+    },
     "content_scripts": [
         {
             "matches": [
